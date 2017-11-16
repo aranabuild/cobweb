@@ -8,14 +8,19 @@ pipeline {
             powershell 'nuget restore ./src/Cobweb.sln'
           }
         }
-        stage('') {
+        stage('Print') {
           steps {
             echo '${ tool \'MSBuild\'}'
           }
         }
+        stage('Tool') {
+          steps {
+            tool 'MSBuild'
+          }
+        }
       }
     }
-    stage('error') {
+    stage('Build') {
       steps {
         bat '${tool \'MSBuild\'} ./src/Cobweb.sln /p:Configuration=Release'
       }
