@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('NuGet Restore') {
-      steps {
-        powershell 'nuget restore ./src/Cobweb.sln'
+      parallel {
+        stage('NuGet Restore') {
+          steps {
+            powershell 'nuget restore ./src/Cobweb.sln'
+          }
+        }
+        stage('') {
+          steps {
+            echo '${ tool \'MSBuild\'}'
+          }
+        }
       }
     }
     stage('error') {
