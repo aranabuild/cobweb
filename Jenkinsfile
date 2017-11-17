@@ -10,7 +10,8 @@ pipeline {
         }
         stage('Print') {
           steps {
-            echo '${ tool \'MSBuild\'}'
+            def msbuildHome = tool 'MSBuild'
+            echo '${msbuildHome}'
           }
         }
         stage('Tool') {
@@ -22,7 +23,8 @@ pipeline {
     }
     stage('Build') {
       steps {
-        bat '${tool \'MSBuild\'} ./src/Cobweb.sln /p:Configuration=Release'
+        def msbuildHome = tool 'MSBuild'
+        bat "${msbuildHome} ./src/Cobweb.sln /p:Configuration=Release"
       }
     }
   }
