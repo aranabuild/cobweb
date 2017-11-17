@@ -1,12 +1,10 @@
 pipeline {
   agent any
-  tools {
-    msbuild 'MSBuild'
-  }
   stages {
     stage('Build') {
       steps {
-        bat "msbuild.exe ./src/Cobweb.sln /p:Configuration=Release"
+        def msbuildPath = tool name: 'MSBuild', type: 'msbuild'
+        bat "\"${msbuildPath}\" ./src/Cobweb.sln /p:Configuration=Release"
       }
     }
   }
