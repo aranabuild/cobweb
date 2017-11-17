@@ -5,10 +5,8 @@ pipeline {
   }
   stages {
     stage('NuGet Restore') {
-      stage('NuGet Restore') {
-        steps {
-          powershell 'nuget restore ./src/Cobweb.sln'
-        }
+      steps {
+        powershell 'nuget restore ./src/Cobweb.sln'
       }
     }
     stage('Build') {
