@@ -3,8 +3,7 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        def msbuildPath = tool name: 'MSBuild', type: 'msbuild'
-        bat "\"${msbuildPath}\" ./src/Cobweb.sln /p:Configuration=Release"
+        bat "\"${tool name: 'MSBuild', type: 'msbuild'}\" ./src/Cobweb.sln /p:Configuration=Release"
       }
     }
   }
